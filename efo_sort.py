@@ -10,8 +10,11 @@ def build_rs_gene_mapping_dict():
     with open('../maf_per_kb_analysis/single_mapping_file.tsv', 'r') as f:
         for line in f:
             line = line.strip().split('\t')
-            d_id[line[2]] = line[8]
-            d_name[line[2]] = line[9]
+            try:
+                d_id[line[2]] = line[8]
+                d_name[line[2]] = line[9]
+            except IndexError:
+                pass
     return d_id, d_name
 
 
