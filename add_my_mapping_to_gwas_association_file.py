@@ -5,6 +5,10 @@ I use GRCh37 gene positions and 1kb flank both side
 
 
 def build_rs_gene_mapping_dict():
+    """
+    build two super dictionaries {rsid: my_own_mapping_1kb_flank_both_gene_id_and_gene_name}
+    :return:
+    """
     d_id = {}
     d_name = {}
     with open('../maf_per_kb_analysis/single_mapping_file.tsv', 'r') as f:
@@ -35,10 +39,17 @@ def convert_nonetype_to_none_str(sth_could_be_nonetype):
 
 
 def get_gid_gname_from_dict(rs_id_list, id_dict, name_dict):
+    """
+    input rs id list, return mapped gene_names and gene_ids in the format of str
+    :param rs_id_list: rs ids, type: list
+    :param id_dict:
+    :param name_dict:
+    :return:
+    """
     gid = ''
     gname = ''
     for i in rs_id_list:
-        id_in_line = id_dict.get(i.replace(' ', ''))
+        id_in_line = id_dict.get(i.replace(' ', ''))    # the .replace is used in removing potential spaces
         gname_in_line = name_dict.get(i.replace(' ', ''))
         gid += convert_nonetype_to_none_str(id_in_line) + ','
         gname += convert_nonetype_to_none_str(gname_in_line) + ','
