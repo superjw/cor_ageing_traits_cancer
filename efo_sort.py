@@ -4,6 +4,7 @@ I use GRCh37 gene positions and 1kb flank both side
 """
 
 
+
 def build_rs_gene_mapping_dict():
     d_id = {}
     d_name = {}
@@ -15,7 +16,23 @@ def build_rs_gene_mapping_dict():
                 d_name[line[2]] = line[9]
             except IndexError:
                 pass
+    print('dict-build done!')
     return d_id, d_name
+
+
+def convert_nonetype_to_none_str(sth_could_be_nonetype):
+    """
+    used to deal with the issues when trying add NoneType to strings. potential error see below
+    Error: TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+    :param sth_could_be_nonetype:
+    :return:
+    """
+    if not sth_could_be_nonetype:
+        sth_could_be_nonetype = ''
+        print(1)
+    else:
+        pass
+    return sth_could_be_nonetype
 
 
 def get_gid_gname_from_dict(rs_id_list):
@@ -23,8 +40,10 @@ def get_gid_gname_from_dict(rs_id_list):
     gid = ''
     gname = ''
     for i in rs_id_list:
-        gid += (id_dict.get(i.replace(' ', '')) + ',')
-        gname += (name_dict.get(i.replace(' ', '')) + ',')
+        id_in_line = id_dict.get(i.replace(' ', ''))
+        gname_in_line = name_dict.get(i.replace(' ', ''))
+        gid += convert_nonetype_to_none_str(id_in_line) + ','
+        gname += convert_nonetype_to_none_str(gname_in_line) + ','
     return gid.strip(','), gname.strip(',')
 
 
