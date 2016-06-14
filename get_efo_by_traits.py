@@ -60,6 +60,11 @@ def classify_to_each_file(line_from_gwas_asso_file, trait_name_list):
 
 
 def check_if_duplicated_lines_exits(trait_name_list):
+    """
+    this function is used to check if duplicated lines exits
+    :param trait_name_list:
+    :return:
+    """
     for trait_name in trait_name_list:
         with open(trait_name + '.entries.tsv', 'r') as f:
             seen = set()
