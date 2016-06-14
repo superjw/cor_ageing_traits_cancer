@@ -79,3 +79,4 @@ with open('./03/gwas_catalog_associations_ontology-annotated.tsv', 'r') as f:
     print('job done!')
 assert check_if_duplicated_lines_exits(trait_name_list)
 print('no duplicated lines found in all trait files!')
+
