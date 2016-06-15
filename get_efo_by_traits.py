@@ -72,10 +72,10 @@ def check_if_duplicated_lines_exits(trait_name_list):
             for line in f:
                 if line in seen:
                     print(line)
-                    return False
+                    # return False
                 else:
                     seen.add(line)
-        return True
+        # return True
 
 
 trait_name_list = ['stroke', 'alzheimers', 'parkinson', 't_2_diabetes', 'metabolic_syndrome', 'obesity', 'cardiovascular_disease', 'hypertension', 'age_related_macular_degeneration', 'prostate', 'colorectal', 'ovarian', 'pancreatic', 'breast']
@@ -84,6 +84,6 @@ with open('gwas_asso_file_1kb_flank_my_mapping.tsv', 'r') as f:
     for line in f:
         classify_to_each_file(line, trait_name_list)
     print('job done!')
-assert check_if_duplicated_lines_exits(trait_name_list)
-print('no duplicated lines found in all trait files!')
+# assert check_if_duplicated_lines_exits(trait_name_list)
+# print('no duplicated lines found in all trait files!')
 
