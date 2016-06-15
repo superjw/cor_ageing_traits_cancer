@@ -54,7 +54,7 @@ def classify_to_each_file(line_from_gwas_asso_file, trait_name_list):
                         pass
             except TypeError:
                 with open('no_efo_mapping_entries.tsv', 'a') as f:
-                    print(line_from_gwas_asso_file.strip())
+                    # print(line_from_gwas_asso_file.strip())
                     f.write(line_from_gwas_asso_file)
     return
 
@@ -71,10 +71,11 @@ def check_if_duplicated_lines_exits(trait_name_list):
             seen = set()
             for line in f:
                 if line in seen:
-                    # print(line)
+                    print(line)
                     return False
                 else:
                     seen.add(line)
+        return True
 
 
 trait_name_list = ['stroke', 'alzheimers', 'parkinson', 't_2_diabetes', 'metabolic_syndrome', 'obesity', 'cardiovascular_disease', 'hypertension', 'age_related_macular_degeneration', 'prostate', 'colorectal', 'ovarian', 'pancreatic', 'breast']
